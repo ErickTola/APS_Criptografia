@@ -31,8 +31,8 @@ def gera_numero_primo():
         if e_primo(numero):
             return numero
 
-def mod_inverso(a, m):
-    #Acha o modulo inverso usando o algoritimo euclidiano extendido
+def mdc_extendido(a, m):
+    # Executa o algoritimo extendido de Euclides
 
     m0, x0, x1 = m, 0, 1
     while a > 1:
@@ -56,7 +56,7 @@ def gera_chaves():
         e = random.randint(2, phi - 1)
 
     # Calcula o modulo inverso de "e"
-    d = mod_inverso(e, phi)
+    d = mdc_extendido(e, phi)
     
     # Retorna a chave Pública (e, n) e a chave Privada (d, n)
     return ((e, n), (d, n))
@@ -76,10 +76,7 @@ def descriptografar(chave_privada, texto_criptografado):
     texto = ''.join([chr((char ** d) % n) for char in texto_criptografado])
     return texto
 
-
 chave_publica, chave_privada = gera_chaves()
-
-
 
 f = open("Chave_publica.txt", 'w')
 f.write(str(chave_publica))
@@ -88,4 +85,3 @@ f.close()
 f = open("Chave_privada.txt", 'w')
 f.write(str(chave_privada))
 f.close()
-
