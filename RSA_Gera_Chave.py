@@ -61,21 +61,6 @@ def gera_chaves():
     # Retorna a chave Pública (e, n) e a chave Privada (d, n)
     return ((e, n), (d, n))
 
-def criptografar(chave_publica, texto):
-
-    e, n = chave_publica
-    #Converte cada letra no texto para um numero no padrão UTF-8 e criptografa
-    texto_criptografado = [(ord(char) ** e) % n for char in texto]
-
-    return texto_criptografado
-
-def descriptografar(chave_privada, texto_criptografado):
-    
-    d, n = chave_privada
-    #Descriptografa cada número para o valor original e converte para texto no padrão UTF-8
-    texto = ''.join([chr((char ** d) % n) for char in texto_criptografado])
-    return texto
-
 chave_publica, chave_privada = gera_chaves()
 
 f = open("Chave_publica.txt", 'w')
